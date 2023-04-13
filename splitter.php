@@ -59,12 +59,12 @@ function main(): void {
 function usage(): void {
 
     echo <<<EOF
-Usage: /path/to/mp3split.php --file file.mp3 --track-list list.txt --track-list-format "%number%. %from% - %title%" --output-dir output/
+Usage: /path/to/splitter.php --file file.mp3 --track-list list.txt --track-list-format "%number%. %from% - %title%" --output-dir output/
 
 Required:
---file Path to the mp3 file which you want to split
+--file Path to the audio file which you want to split
 --track-list Path to track list file
---output-dir Path to output directory where to save the mp3 files
+--output-dir Path to output directory where to save the output files
 --track-list-format Specify the row format of the track list using parameters. 
 
 The parameter is a string surrounded by "%" character which contains only a-z, A-Z, 0-9 chars inside. You can specify as many 

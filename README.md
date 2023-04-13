@@ -1,6 +1,6 @@
-# mp3split
+# audio-splitter
 
-This is a PHP script which wraps ffmpeg used to split large mp3/audio files to small chunks, defined 
+This is a PHP script which wraps ffmpeg used to split large audio files to small chunks, defined 
 in track list file. You can specify the format of the track list and name of the output files using command line
 arguments.
 
@@ -14,13 +14,13 @@ arguments.
 Download the script or clone the repo:
 
 ```bash
-git clone git@github.com:sgoranov/mp3split.git
+git clone git@github.com:sgoranov/audio-splitter.git
 ```
 
 Make sure the script is executable:
 
 ```bash
-chmod +x /path/to/mp3split.php
+chmod +x /path/to/splitter.php
 ```
 
 ## Usage
@@ -42,7 +42,7 @@ you can define the `--track-list-format` as `%seq%. %from% - %title%`. So the co
 like this one below:
 
 ```bash
-/path/to/mp3split.php --file /path/to/file.mp3 --track-list /path/to/list.txt --track-list-format "%seq%. %from% - %title%" --output-dir /path/to/output_dir/
+/path/to/splitter.php --file /path/to/file.mp3 --track-list /path/to/list.txt --track-list-format "%seq%. %from% - %title%" --output-dir /path/to/output_dir/
 ```
 
 The script will parse the track list then it will use the `%from%` parameter to determine where each 
