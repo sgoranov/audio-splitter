@@ -36,7 +36,7 @@ function main(): void {
         $timeSeparator = DEFAULT_TIME_SEPARATOR;
     }
 
-    $data = parseTrackList($trackList, $trackListFormat);
+    $data = parseTrackList($trackList, $trackListFormat, $timeSeparator);
 
     foreach ($data as $item) {
 
@@ -159,9 +159,9 @@ function getValidParams(string $format): array {
     return $matches[0];
 }
 
-function parseTrackList(string $pathToTrackListFile, string $format): array {
+function parseTrackList(string $pathToTrackListFile, string $format, string $timeSeparator): array {
 
-    list($pattern, $params) = buildRegexPattern($format);
+    list($pattern, $params) = buildRegexPattern($format, $timeSeparator);
 
     $data = [];
     $fp = fopen($pathToTrackListFile, "r");
@@ -198,7 +198,7 @@ function parseTrackList(string $pathToTrackListFile, string $format): array {
     return $data;
 }
 
-function buildRegexPattern(string $format): array {
+function buildRegexPattern(string $format, string $timeSeparator): array {
 
     $format = trim($format);
     $format = escapeRegexSpecialChars($format);
@@ -213,6 +213,8 @@ function buildRegexPattern(string $format): array {
     }
     asort($paramPositions);
     $sortedParams = array_keys($paramPositions);
+
+    $format = str_replace('%from%', sprintf('([%s\d]+)', escapeRegexSpecialChars($timeSeparator)), $format);
     $format = str_replace($validParams, '(.*)', $format);
     $format = '/^' . $format . '$/';
 
